@@ -1,6 +1,7 @@
 #include <iostream>
 #include "query.h"
 #include "storage.h"
+#include "operations.h"
 #include <iomanip>
 #include <fstream>
 #include <chrono>

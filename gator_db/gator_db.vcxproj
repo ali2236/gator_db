@@ -134,10 +134,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gator_db.cpp" />
+    <ClCompile Include="operations.cpp" />
     <ClCompile Include="query.cpp" />
     <ClCompile Include="storage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="operations.h" />
     <ClInclude Include="query.h" />
     <ClInclude Include="storage.h" />
   </ItemGroup>

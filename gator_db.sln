@@ -5,6 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gator_db", "gator_db\gator_db.vcxproj", "{DE43B36E-EF8E-4D52-80CF-3B160624ADD9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gator_db_cuda", "gator_db_cuda\gator_db_cuda.vcxproj", "{306A62FE-6725-4CA5-807D-5E671047F7F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE43B36E-EF8E-4D52-80CF-3B160624ADD9} = {DE43B36E-EF8E-4D52-80CF-3B160624ADD9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +26,14 @@ Global
 		{DE43B36E-EF8E-4D52-80CF-3B160624ADD9}.Release|x64.Build.0 = Release|x64
 		{DE43B36E-EF8E-4D52-80CF-3B160624ADD9}.Release|x86.ActiveCfg = Release|Win32
 		{DE43B36E-EF8E-4D52-80CF-3B160624ADD9}.Release|x86.Build.0 = Release|Win32
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Debug|x64.ActiveCfg = Debug|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Debug|x64.Build.0 = Debug|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Debug|x86.ActiveCfg = Debug|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Debug|x86.Build.0 = Debug|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Release|x64.ActiveCfg = Release|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Release|x64.Build.0 = Release|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Release|x86.ActiveCfg = Release|x64
+		{306A62FE-6725-4CA5-807D-5E671047F7F9}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
