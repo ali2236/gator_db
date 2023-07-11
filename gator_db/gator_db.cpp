@@ -10,6 +10,8 @@
     Example Queries:
     - select host, path, count(id) from records.csv where host = adobe.com group by path order by count(id) desc limit 10000 (300ms)
     - select template_id, sum(count) from memeTemplateEvent30k.csv where type = open group by template_id order by sum(count) desc limit 10 (15580ms)
+    - select template_id, count from memeTemplateEvent30k.csv order by count desc limit 10 (843ms) (317ms)
+    - select template_id, count from memeTemplateEvent30k.csv limit 10
 */
 
 int main()
@@ -28,10 +30,10 @@ int main()
     auto begin = std::chrono::high_resolution_clock::now();
 
     import_table_from_csv_lines(lines, &t);
-    auto r = restrict(t, query.where);
-    auto g = aggregation(r, query.group_by);
-    auto o = order(g, query.order_by, query.asc);
-    auto p = projection(&o, query.select);
+    auto r = query.where.size() > 0 ? restrict(t, query.where[0]) : t;
+    auto g = query.group_by.size() > 0 ? aggregation(r, query.group_by) : r;
+    auto o = query.order_by.size() > 0 ? order(g, query.order_by, query.asc) : g;
+    auto p = query.select.size() > 0 ? projection(o, query.select) : o;
     auto l = limit(p, query.limit);
 
     auto end = std::chrono::high_resolution_clock::now();

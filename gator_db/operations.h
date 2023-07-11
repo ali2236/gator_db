@@ -1,7 +1,7 @@
 #pragma once
 #include "query.h"
 
-table projection(table* t, std::vector<std::string> select);
+table projection(table t, std::vector<std::string> select);
 
 table restrict(table t, where restriction);
 

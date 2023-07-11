@@ -154,7 +154,7 @@ void import_table_from_csv_lines(std::vector<std::string>& lines, table* t)
 		line = linesArr[i];
 		record r;
 		auto fieldsRaw = strutil::split(line, ",");
-		r.fields = (field*) malloc(sizeof(field) * t->width);
+		r.fields = new field[t->width];
 		for (size_t j = 0; j < fieldsRaw.size(); j++)
 		{
 			std::string value = fieldsRaw[j];

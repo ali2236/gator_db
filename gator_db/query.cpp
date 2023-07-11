@@ -23,9 +23,11 @@ query parse_query(std::string& q) {
 
 	// where
 	if (regex_search(q, matches, std::regex("where\\s+(([\\w\\d]+)\\s*(=|>|<|<>|~=|!=)\\s*([\\w\\d.]+))"))) {
-		result.where.column = matches[2];
-		result.where.op = matches[3];
-		result.where.value = matches[4];
+		where wh;
+		wh.column = matches[2];
+		wh.op = matches[3];
+		wh.value = matches[4];
+		result.where.push_back(wh);
 	}
 
 	// group by

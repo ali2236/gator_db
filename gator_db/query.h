@@ -17,7 +17,7 @@ class query
 public:
 	std::vector<std::string> select;
 	std::string from;
-	where where;
+	std::vector<where> where;
 	std::vector<std::string> group_by;
 	std::vector<std::string> order_by;
 	bool asc = true;

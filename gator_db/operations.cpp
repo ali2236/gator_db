@@ -1,42 +1,39 @@
+
 #include "operations.h"
 #include <algorithm>
 #include <iterator>
 
-table projection(table* t, std::vector<std::string> select) {
-
-	table p(t->name);
-
-	p.width = select.size();
-	p.length = t->length;
-
-	p.columns = new column[p.width];
+table projection(table t, std::vector<std::string> select) {
 	std::string* colNames = &select[0];
 	std::vector<int> field_selector;
-	for (size_t i = 0; i < p.width; i++)
+	column* columns = new column[select.size()];
+	for (size_t i = 0; i < select.size(); i++)
 	{
-
 		// find first match column by name
-		for (size_t j = 0; j < t->width; j++)
+		for (size_t j = i; j < t.width; j++)
 		{
-			if (colNames[i] == t->columns[j].name) {
-				p.columns[i] = t->columns[j];
+			if (colNames[i] == t.columns[j].name) {
+				columns[i] = t.columns[j];
 				field_selector.push_back(j);
 				break;
 			}
 		}
 	}
+	t.columns = columns;
+	t.width = select.size();
 
-	p.records = new record[p.length];
-	for (size_t i = 0; i < p.length; i++)
+	record* records = new record[t.length];
+	for (size_t i = 0; i < t.length - 2; i++)
 	{
 		int j = 0;
-		p.records[i].fields = (field*)malloc(sizeof(field) * p.width);
+		records[i].fields = new field[t.width];
 		for (int selector : field_selector) {
-			p.records[i].fields[j++] = t->records[i].fields[selector];
+			records[i].fields[j++] = t.records[i].fields[selector];
 		}
 	}
+	t.records = records;
 
-	return p;
+	return t;
 }
 
 table restrict(table t, where restriction){
@@ -207,8 +204,10 @@ table order(table t, std::vector<std::string> order_by, bool asc)
 			return acc > 0;
 		}
 	};
+	
+	// oneapi::tbb::parallel_sort(t.records, t.records + t.length, cmpr);
 
-	std::sort(t.records, t.records + t.length, cmpr);
+	std::sort(t.records, t.records + t.length - 2, cmpr);
 	return t;
 }
 
