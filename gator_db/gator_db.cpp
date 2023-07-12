@@ -10,12 +10,14 @@
     Example Queries:
     - select host, path, count(id) from records.csv where host = adobe.com group by path order by count(id) desc limit 10000 (300ms)
     - select template_id, sum(count) from memeTemplateEvent30k.csv where type = open group by template_id order by sum(count) desc limit 10 (15580ms)
-    - select template_id, count from memeTemplateEvent30k.csv order by count desc limit 10 (843ms) (317ms)
-    - select template_id, count from memeTemplateEvent30k.csv limit 10
+    - select template_id, count from memeTemplateEvent.csv order by count desc limit 10 (843ms) (317ms)
+    - select template_id, count from memeTemplateEvent.csv limit 10
+    - select host, id from records1m.csv limit 10
 */
 
 int main()
 {
+
     std::string q;
     std::vector<std::string> lines;
 

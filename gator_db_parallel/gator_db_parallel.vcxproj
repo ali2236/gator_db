@@ -82,7 +82,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\gator_db\parallel.cpp" />
+    <ClCompile Include="algorithms.cpp" />
     <ClCompile Include="gator_db_parallel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\gator_db\parallel.h" />
+    <ClInclude Include="algorithms.h" />
+    <ClInclude Include="storage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

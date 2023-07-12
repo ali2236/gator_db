@@ -174,7 +174,7 @@ void import_table_from_csv_lines(std::vector<std::string>& lines, table* t)
 
 		t->records[i-offset] = r;
 		records_count++;
-		if (records_count % 10000 == 0) {
+		if (records_count % 50000 == 0) {
 			std::cout << "Loaded " << records_count << " Records" << std::endl;
 		}
 	}
