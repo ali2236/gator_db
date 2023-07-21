@@ -1,6 +1,5 @@
 #include "algorithms.cuh"
 #include "cuda_runtime.h"
-#include "device_functions.h"
 #include <stdio.h>
 #include <string>
 
@@ -22,7 +21,7 @@ __device__ bool compare_rows(int* a, int* b, int width, int* compare_fields, int
 // Odd Even Sort
 __global__ void sort_kernel(int* table, int width, int length, int* sort_keys, int sort_keys_len, int asc) {
 	int tid = blockIdx.x * blockDim.x + threadIdx.x;
-	int phase, i;
+	int phase;
 	int temp;
 
 	for (phase = 0; phase < length; phase++) {
@@ -264,6 +263,8 @@ cudaError_t group(int* data, int& width, int& length, int group_by)
 	data = &expansion;
 	width = width + expansion;
 	length = block_output_len[0];
+
+	return cudaStatus;
 }
 
 cudaError_t sort(int* data, int width, int length, int* order_cols, int order_cols_count, int asc) {

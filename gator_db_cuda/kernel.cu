@@ -25,7 +25,7 @@ int main()
         std::getline(file, line);
         while (std::getline(file, line))
         {
-            auto& row_str = strutil::split(line,",");
+            auto row_str = strutil::split(line,",");
             std::vector<int> row;
             for (auto& s : row_str) row.push_back(std::stoi(s));
             data.push_back(row);
