@@ -13,6 +13,7 @@
     - select template_id, count from memeTemplateEvent.csv order by count desc limit 10 (843ms) (317ms)
     - select template_id, count from memeTemplateEvent.csv limit 10
     - select host, id from records1m.csv limit 10
+    - select host, count(id) from records.csv group by host order by count(id) desc limit 5
 */
 
 int main()

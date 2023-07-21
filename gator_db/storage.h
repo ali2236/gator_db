@@ -61,7 +61,3 @@ public:
 
 void parse_csv(std::string fileName, std::vector<std::string>& lines);
 void import_table_from_csv_lines(std::vector<std::string>& lines, table* t);
-
-class virtualTable : table {
-
-};

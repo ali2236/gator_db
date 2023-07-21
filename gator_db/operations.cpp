@@ -204,8 +204,6 @@ table order(table t, std::vector<std::string> order_by, bool asc)
 			return acc > 0;
 		}
 	};
-	
-	// oneapi::tbb::parallel_sort(t.records, t.records + t.length, cmpr);
 
 	std::sort(t.records, t.records + t.length - 2, cmpr);
 	return t;

@@ -286,7 +286,7 @@ cudaError_t sort(int* data, int width, int length, int* order_cols, int order_co
 	cudaStatus = cudaMemcpy(device_sort_keys, order_cols, sizeof(int) * order_cols_count, cudaMemcpyHostToDevice);
 	if (cudaStatus != cudaSuccess) return cudaStatus;
 
-	sort_kernel << <1, 1 >> > (device_table, width, length, device_sort_keys, order_cols_count, asc);
+	sort_kernel <<<1, length>>> (device_table, width, length, device_sort_keys, order_cols_count, asc);
 	if (cudaStatus != cudaSuccess) return cudaStatus;
 
 	cudaStatus = cudaMemcpy(data, device_table, sizeof(int) * length * width, cudaMemcpyDeviceToHost);
