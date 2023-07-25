@@ -17,6 +17,7 @@
     - select * from grades.csv where grade > 9 limit 10
     - select * from grades.csv order by semester_id asc limit 10
     - select * from grades.csv group by course_id limit 10
+    - select * from grades.csv where grade > 9 group by course_id order by course_id desc limit 10
 */
 
 int main()
