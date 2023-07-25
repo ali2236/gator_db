@@ -14,6 +14,9 @@
     - select template_id, count from memeTemplateEvent.csv limit 10
     - select host, id from records1m.csv limit 10
     - select host, count(id) from records.csv group by host order by count(id) desc limit 5
+    - select * from grades.csv where grade > 9 limit 10
+    - select * from grades.csv order by semester_id asc limit 10
+    - select * from grades.csv group by course_id limit 10
 */
 
 int main()

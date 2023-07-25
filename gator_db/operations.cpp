@@ -55,6 +55,7 @@ table restrict(table t, where restriction){
 	auto lte = [&restriction](field& f) {return (f <= restriction.value); };
 	auto gt = [&restriction](field& f) {return (f > restriction.value); };
 	auto gte = [&restriction](field& f) {return (f >= restriction.value); };
+
 	if (restriction.op == "=") {
 		std::copy_if(t.records, t.records + t.length - 2, std::back_inserter(filtered), [control_field,&eq](record& record) {return  eq(record.fields[control_field]); });
 	}
@@ -62,16 +63,16 @@ table restrict(table t, where restriction){
 		std::copy_if(t.records, t.records + t.length, std::back_inserter(filtered), [control_field, &neq](record& record) {return  neq(record.fields[control_field]); });
 	}
 	else if (restriction.op == "<") {
-		std::copy_if(t.records, t.records + t.length, std::back_inserter(filtered), [control_field, &lt](record& record) {return  lt(record.fields[control_field]); });
+		std::copy_if(t.records, t.records + t.length - 2, std::back_inserter(filtered), [control_field, &lt](record& record) {return  lt(record.fields[control_field]); });
 	}
 	else if (restriction.op == "<=") {
-		std::copy_if(t.records, t.records + t.length, std::back_inserter(filtered), [control_field, &lte](record& record) {return  lte(record.fields[control_field]); });
+		std::copy_if(t.records, t.records + t.length - 2, std::back_inserter(filtered), [control_field, &lte](record& record) {return  lte(record.fields[control_field]); });
 	}
 	else if (restriction.op == ">") {
-		std::copy_if(t.records, t.records + t.length, std::back_inserter(filtered), [control_field, &gt](record& record) {return  gt(record.fields[control_field]); });
+		std::copy_if(t.records, t.records + t.length - 2, std::back_inserter(filtered), [control_field, &gt](record& record) {return  gt(record.fields[control_field]); });
 	}
 	else if (restriction.op == ">=") {
-		std::copy_if(t.records, t.records + t.length, std::back_inserter(filtered), [control_field, &gte](record& record) {return  gte(record.fields[control_field]); });
+		std::copy_if(t.records, t.records + t.length - 2, std::back_inserter(filtered), [control_field, &gte](record& record) {return  gte(record.fields[control_field]); });
 	}
 
 	t.length = filtered.size();

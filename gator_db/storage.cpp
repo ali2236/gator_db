@@ -77,7 +77,7 @@ bool field::operator!=(field other)
 
 int field::compare_string(const std::string& other)
 {
-	switch (_type)
+	switch (this->_type)
 	{
 	case DATA_TYPE_INT:
 		return std::get<int>(_data) - std::stoi(other);
