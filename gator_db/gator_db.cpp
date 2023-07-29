@@ -7,17 +7,11 @@
 #include <chrono>
 
 /*
-    Example Queries:
-    - select host, path, count(id) from records.csv where host = adobe.com group by path order by count(id) desc limit 10000 (300ms)
-    - select template_id, sum(count) from memeTemplateEvent30k.csv where type = open group by template_id order by sum(count) desc limit 10 (15580ms)
-    - select template_id, count from memeTemplateEvent.csv order by count desc limit 10 (843ms) (317ms)
-    - select template_id, count from memeTemplateEvent.csv limit 10
-    - select host, id from records1m.csv limit 10
-    - select host, count(id) from records.csv group by host order by count(id) desc limit 5
-    - select * from grades.csv where grade > 9 limit 10
-    - select * from grades.csv order by semester_id asc limit 10
-    - select * from grades.csv group by course_id limit 10
-    - select * from grades.csv where grade > 9 group by course_id order by course_id desc limit 10
+    Benchmark Queries:
+    - select * from grades4096k.csv where grade > 9 limit 10
+    - select * from grades64k.csv order by semester asc limit 10
+    - select * from grades64k.csv group by course_id limit 10
+    - select * from grades2048k.csv where grade > 9 group by course_id order by avg(grade) asc limit 10
 */
 
 int main()

@@ -144,7 +144,7 @@ table aggregation(table t, std::vector<std::string> group_by) {
 			merged.fields[old_width + (j * 5) + 1] = field(1); // count
 			merged.fields[old_width + (j * 5) + 2] = current.fields[intColIndexArr[j]]; // max
 			merged.fields[old_width + (j * 5) + 3] = current.fields[intColIndexArr[j]]; // min
-			merged.fields[old_width + (j * 5) + 4] = 0; // current.fields[intColIndexArr[j]]; // avg
+			merged.fields[old_width + (j * 5) + 4] = 0; // avg
 		}
 
 		for (size_t j = i + 1; j < t.length - 2; j++)
@@ -166,7 +166,7 @@ table aggregation(table t, std::vector<std::string> group_by) {
 					merged.fields[old_width + (k * 5) + 1] = merged.fields[old_width + (k * 5) + 1] + field(1); // count
 					merged.fields[old_width + (k * 5) + 2] = f.i() > merged.fields[old_width + (k * 5) + 2].i() ? f : merged.fields[old_width + (k * 5) + 2]; // max
 					merged.fields[old_width + (k * 5) + 3] = f.i() < merged.fields[old_width + (k * 5) + 2].i() ? f : merged.fields[old_width + (k * 5) + 2]; // min
-					merged.fields[old_width + (k * 5) + 4] = 0; // avg
+					merged.fields[old_width + (k * 5) + 4] = field(merged.fields[old_width + (k * 5) + 0].i() / merged.fields[old_width + (k * 5) + 1].i()); // avg
 				}
 				next.fields[group_indexes[0]].make_null();
 			}
@@ -206,7 +206,33 @@ table order(table t, std::vector<std::string> order_by, bool asc)
 		}
 	};
 
-	std::sort(t.records, t.records + t.length - 2, cmpr);
+	int i, j, k;
+
+	for (i = 0; i < t.length - 2; i++) {
+		if (i % 2 == 0) {
+			// Even phase
+			for (j = 2; j < t.length - 2; j += 2) {
+				if (cmpr(t.records[j], t.records[j-1])) {
+					record temp = t.records[j];
+					t.records[j] = t.records[j - 1];
+					t.records[j - 1] = temp;
+				}
+			}
+		}
+			else {
+				// Odd phase
+				for (j = 1; j < t.length - 2; j += 2) {
+					if (cmpr(t.records[j], t.records[j - 1])) {
+						record temp = t.records[j];
+						t.records[j] = t.records[j - 1];
+						t.records[j - 1] = temp;
+					}
+				}
+			}
+	}
+
+	// std::sort(t.records, t.records + t.length - 2, cmpr);
+
 	return t;
 }
 
