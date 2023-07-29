@@ -8,18 +8,21 @@
 
  Operators Implemented: Restrict, Summerize, Sort
 
-[Report File](./assets/parallel_db_report.pdf)
+[Report](./assets/parallel_db_report.pdf)
 
 # Benchmarks
 
-### Restrict
 
-![restrict comparison result](./assets/restrict.png)
+## Restrict
 
-### Summerize
+![restrict comparison result](./assets/where.png)
+
+
+## Summerize
 
 ![summerize comparison](./assets/summerize.png)
 
-### Sort
+
+## Sort
 
 ![sort comparison](./assets/sorting.png)
