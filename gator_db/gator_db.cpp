@@ -1,3 +1,9 @@
+/*
+ * By: Ali Ghanbari
+ * Student ID: 40110524
+ * Professor: Dr. Mossavi nia
+ * Course: Prallel Proccessing
+**/
 #include <iostream>
 #include "query.h"
 #include "storage.h"

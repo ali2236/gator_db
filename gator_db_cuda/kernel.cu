@@ -3,7 +3,6 @@
  * Student ID: 40110524
  * Professor: Dr. Mossavi nia
  * Course: Prallel Proccessing
- *
 **/
 #include "cuda_runtime.h"
 #include <device_launch_parameters.h>
